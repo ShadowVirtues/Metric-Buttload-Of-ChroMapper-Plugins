@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChroMapper-DisableTransitions", "ChroMapper-DisableTransitions\ChroMapper-DisableTransitions.csproj", "{0F4DC6D8-538D-423A-9BDE-D9031D41B22C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F4DC6D8-538D-423A-9BDE-D9031D41B22C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4DC6D8-538D-423A-9BDE-D9031D41B22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4DC6D8-538D-423A-9BDE-D9031D41B22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4DC6D8-538D-423A-9BDE-D9031D41B22C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C74B68A2-BA2C-4DBF-9CC4-5A67915FF0FD}
+	EndGlobalSection
+EndGlobal
