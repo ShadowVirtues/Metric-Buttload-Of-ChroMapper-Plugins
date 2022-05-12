@@ -1,12 +1,14 @@
 # Metric Buttload Of ChroMapper Plugins
 A collection of plugins that modify or introduce mostly small and a few not-so-small things in ChroMapper. 
 
-Made these to change the app to how I'd prefer it to be, but also some were highly requested by other mappers. 
+Made these to change the app to how I'd prefer it to be, but also some were highly requested by other mappers, and I particularly was working with Joetastic ([Twitter](https://twitter.com/Joetastic_), [BeatSaver](https://beatsaver.com/profile/58338)) on some of them.
 
 On the screenshot you can see:
 GridBookmarks, LongerGrid, ThinBookmarks, SongNameDuringEditing, CloserWaveform, LessTransparentNotes.
 
 ![EN8c3JsQk6](https://user-images.githubusercontent.com/33060527/167791164-4ba05bc2-a83b-489b-8de8-84df72ac01fc.jpg)
+
+Also Joetastic made a **side-by-side comparison** for some of the plugins in the [Twitter Thread](https://twitter.com/Joetastic_/status/1524663790733721600).
 
 ## 1. GridBookmarks
 Finally! See how they look like on the screenshot above. 
