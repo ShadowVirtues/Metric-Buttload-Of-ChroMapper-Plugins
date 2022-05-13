@@ -1,12 +1,14 @@
 # Metric Buttload Of ChroMapper Plugins
 A collection of plugins that modify or introduce mostly small and a few not-so-small things in ChroMapper. 
 
-Made these to change the app to how I'd prefer it to be, but also some were highly requested by other mappers. 
+Made these to change the app to how I'd prefer it to be, but also some were highly requested by other mappers, and I particularly was working with Joetastic ([Twitter](https://twitter.com/Joetastic_), [BeatSaver](https://beatsaver.com/profile/58338)) on some of them.
 
 On the screenshot you can see:
 GridBookmarks, LongerGrid, ThinBookmarks, SongNameDuringEditing, CloserWaveform, LessTransparentNotes.
 
 ![EN8c3JsQk6](https://user-images.githubusercontent.com/33060527/167791164-4ba05bc2-a83b-489b-8de8-84df72ac01fc.jpg)
+
+Also Joetastic made a **side-by-side comparison** for some of the plugins in the [Twitter Thread](https://twitter.com/Joetastic_/status/1524663790733721600).
 
 ## 1. GridBookmarks
 Finally! See how they look like on the screenshot above. 
@@ -57,7 +59,7 @@ Lets you use custom sounds for when cursor passes through notes during playback.
 Your sounds will replace 'Slice' hit-sounds from settings, so select it if you use the plugin. Put the sounds into the folder '\ChroMapper_Data\CustomHitSounds'. Sounds have to be named "Long*.wav", "Short*.wav" (case-insensitive), where there can be anything in place of asterisks. And yes, it only supports .wav files. Random 'long' sound plays for spaced-out notes, random 'short' sound plays for densely-placed notes. If you wish so, there can be only all long or only all short sounds.
 
 ## Installation
-Download plugins' .dlls from [Releases](https://github.com/ShadowVirtues/Metric-Buttload-Of-ChroMapper-Plugins/releases/) page. Then put .dlls into 'Plugins' folder right near ChroMapper.exe. Can put them either to the root of 'Plugins' folder or into any nested folder in there.
+Download plugins' .dlls from [Releases](https://github.com/ShadowVirtues/Metric-Buttload-Of-ChroMapper-Plugins/releases/) page. Then put .dlls into 'Plugins' folder located right near 'ChroMapper.exe'. Can put them either to the root of 'Plugins' folder or into any nested folder in there.
 
 ## Other Stuff
 If someone wants to use any of this code to merge it into ChroMapper by default, feel free to do so.
