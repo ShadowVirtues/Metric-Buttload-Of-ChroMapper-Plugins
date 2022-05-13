@@ -16,6 +16,8 @@ namespace ChroMapper_SeekToSelection
         {
             if (Input.GetKeyDown(KeyCode.G))
             {
+                if (PersistentUI.Instance.DialogBoxIsEnabled || PersistentUI.Instance.InputBoxIsEnabled || PauseManager.IsPaused || SceneTransitionManager.IsLoading) return;
+
                 BeatmapObject obj = SelectionController.SelectedObjects.FirstOrDefault();
                 if (obj == null) return;
                 controller.MoveToTimeInBeats(obj.Time);
