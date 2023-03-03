@@ -3,70 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Beatmap.Base;
+using Beatmap.Enums;
+using Beatmap.V3;
 using UnityEngine;
 
 namespace ChroMapper_V3SliderConverter
 {
     public class Converter : MonoBehaviour
     {
-        private NotesContainer NotesContainer;
+        private NoteGridContainer NotesContainer;
 
         //Since you can't pass null to BeatmapObjectPlacementAction, because clearly you'd ALWAYS need to pass conflicting notes...
-        private readonly BeatmapObject[] dummyArray = Array.Empty<BeatmapObject>();
+        private readonly BaseObject[] dummyArray = Array.Empty<BaseObject>();
 
         void Start()
         {
-            NotesContainer = UnityEngine.Object.FindObjectOfType<NotesContainer>();
+            NotesContainer = UnityEngine.Object.FindObjectOfType<NoteGridContainer>();
         }
 
         void Update()
         {
             if (!Input.GetKeyDown(KeyCode.C) || !Input.GetKey(KeyCode.LeftAlt)) return;
-
+            
             PersistentUI.Instance.ShowDialogBox("Convert all sliders to chains?", Convert, PersistentUI.DialogBoxPresetType.YesNo);
         }
 
         private void Convert(int buttonIndex)
         {
             if (buttonIndex != 0) return;   //PersistentUI.Instance.ShowDialogBox action takes int parameter of which button got pressed
-
+            
             List<string> proccedBeatNumbers = new List<string>();   //To log in the end
 
             List<BeatmapAction> allActions = new List<BeatmapAction>();
             
-            BeatmapNote prevBlueArrow = NotesContainer.LoadedObjects.FirstOrDefault(x => x is BeatmapNote blue && blue.Type == 1) as BeatmapNote;
-            BeatmapNote prevRedArrow = NotesContainer.LoadedObjects.FirstOrDefault(x => x is BeatmapNote red && red.Type == 0) as BeatmapNote;
+            BaseNote prevBlueArrow = NotesContainer.LoadedObjects.FirstOrDefault(x => x is BaseNote blue && blue.Type == 1) as BaseNote;
+            BaseNote prevRedArrow = NotesContainer.LoadedObjects.FirstOrDefault(x => x is BaseNote red && red.Type == 0) as BaseNote;
 
-            BeatmapObjectContainerCollection chainCollection = BeatmapObjectContainerCollection.GetCollectionForType(BeatmapObject.ObjectType.Chain);
-            BeatmapObjectContainerCollection noteCollection = BeatmapObjectContainerCollection.GetCollectionForType(BeatmapObject.ObjectType.Note);
+            BeatmapObjectContainerCollection chainCollection = BeatmapObjectContainerCollection.GetCollectionForType(ObjectType.Chain);
+            BeatmapObjectContainerCollection noteCollection = BeatmapObjectContainerCollection.GetCollectionForType(ObjectType.Note);
 
             //Iterating through all objects.ToArray, since we modify the collection.
             //Then we remember each arrow note as 'previous' and then when stumbling upon dot note, we check if previous arrow note is close in time and that's how we detect stacks
-            foreach (BeatmapObject obj in NotesContainer.LoadedObjects.ToArray())
+            foreach (BaseObject obj in NotesContainer.LoadedObjects.ToArray())
             {
-                BeatmapNote note = obj as BeatmapNote;  //Iterating through all objects and taking only notes
+                BaseNote note = obj as BaseNote;  //Iterating through all objects and taking only notes
                 if (note == null) continue;
 
-                BeatmapNote prevRefNote = note.Type == 0 ? prevRedArrow : prevBlueArrow;
+                BaseNote prevRefNote = note.Type == 0 ? prevRedArrow : prevBlueArrow;
 
                 if (prevRefNote != null && note.Time - prevRefNote.Time < 0.126f && prevRefNote.CutDirection != 8 && note.CutDirection == 8)
                 {
-                    BeatmapNote dot = note;
+                    BaseNote dot = note;
 
-                    BeatmapChain chain = new BeatmapChain
+                    V3Chain chain = new V3Chain
                     {
                         Time = prevRefNote.Time,
                         Color = dot.Type,
-                        X = prevRefNote.LineIndex,
-                        Y = prevRefNote.LineLayer,
-                        Direction = prevRefNote.CutDirection,
+                        PosX = prevRefNote.PosX,
+                        PosY = prevRefNote.PosY,
+                        CutDirection = prevRefNote.CutDirection,
                         TailTime = dot.Time,
-                        TailX = dot.LineIndex,
-                        TailY = dot.LineLayer
+                        TailPosX = dot.PosX,
+                        TailPosY = dot.PosY,
+                        Squish = 1
                     };
 
                     //To calculate the amount of chains we take the longest distance between arrow block an dot block on either X or Y axis
-                    int dist = Mathf.Max(Math.Abs(prevRefNote.LineIndex - dot.LineIndex), Math.Abs(prevRefNote.LineLayer - dot.LineLayer));
+                    int dist = Mathf.Max(Math.Abs(prevRefNote.PosX - dot.PosX), Math.Abs(prevRefNote.PosY - dot.PosY));
                     chain.SliceCount = 2 * (dist + 1);
 
                     allActions.Add(new BeatmapObjectDeletionAction(dot, "Remove dot in a slider"));
