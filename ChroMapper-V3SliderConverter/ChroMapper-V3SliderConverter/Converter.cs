@@ -52,18 +52,18 @@ namespace ChroMapper_V3SliderConverter
 
                 BaseNote prevRefNote = note.Type == 0 ? prevRedArrow : prevBlueArrow;
 
-                if (prevRefNote != null && note.Time - prevRefNote.Time < 0.126f && prevRefNote.CutDirection != 8 && note.CutDirection == 8)
+                if (prevRefNote != null && note.JsonTime - prevRefNote.JsonTime < 0.126f && prevRefNote.CutDirection != 8 && note.CutDirection == 8)
                 {
                     BaseNote dot = note;
 
                     V3Chain chain = new V3Chain
                     {
-                        Time = prevRefNote.Time,
+                        JsonTime = prevRefNote.JsonTime,
                         Color = dot.Type,
                         PosX = prevRefNote.PosX,
                         PosY = prevRefNote.PosY,
                         CutDirection = prevRefNote.CutDirection,
-                        TailTime = dot.Time,
+                        TailJsonTime = dot.JsonTime,
                         TailPosX = dot.PosX,
                         TailPosY = dot.PosY,
                         Squish = 1
@@ -79,7 +79,7 @@ namespace ChroMapper_V3SliderConverter
                     chainCollection.SpawnObject(chain, false, false);
                     allActions.Add(new BeatmapObjectPlacementAction(chain, dummyArray, "Add chain in place of dot"));
 
-                    proccedBeatNumbers.Add(prevRefNote.Time.ToString());
+                    proccedBeatNumbers.Add(prevRefNote.JsonTime.ToString());
                 }
 
                 if (note.CutDirection != 8 && note.Type == 1) prevBlueArrow = note;
