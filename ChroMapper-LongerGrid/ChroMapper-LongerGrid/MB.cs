@@ -16,13 +16,13 @@ namespace ChroMapper_LongerGrid
             yield return new WaitForSeconds(0.1f);  //Otherwise doesn't work
 
             SetScaleZ(transform.Find("Note Grid/Note Grid Front Scaling Offset"));
-            SetScaleZ(transform.Find("BPM Changes Grid/BPM Changes Grid Front Scaling Offset"));
+            SetScaleZ(transform.Find("BPM Events Grid/BPM Events Grid Front Scaling Offset"));
             SetScaleZ(transform.Find("Event Grid/Event Grid Front Scaling Offset"));
-            SetScaleZ(transform.Find("Spectrogram Grid/Spectrogram Grid Front Scaling Offset"));
+            //SetScaleZ(transform.Find("Spectrogram Grid/Spectrogram Grid Front Scaling Offset"));
 
-            ObstaclesContainer obstaclesContainer = FindObjectOfType<ObstaclesContainer>();
-            InvokePrivateMethod(obstaclesContainer, "UnsubscribeToCallbacks");
-            obstaclesContainer.UseChunkLoadingWhenPlaying = false;
+            //ObstaclesContainer obstaclesContainer = FindObjectOfType<ObstaclesContainer>();
+            //InvokePrivateMethod(obstaclesContainer, "UnsubscribeToCallbacks");
+            //obstaclesContainer.UseChunkLoadingWhenPlaying = false;
             //All this breaks Ctrl+H walls spawning close tho D:
         }
 
