@@ -9,15 +9,13 @@ namespace ChroMapper_ShiftFastCamera
         [Init]
         private void Init()
         {
-            SceneManager.sceneLoaded += SceneLoaded;
-        }
-
-        private void SceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (scene.buildIndex == 3)  //Only in the scene where you actually edit the map
+            SceneManager.sceneLoaded += (scene, mode) =>
             {
-                GameObject obj = new GameObject("FastCamera", typeof(MB));
-            }
+                if (scene.buildIndex == 3) // Only in the scene where you actually edit the map
+                {
+                    GameObject obj = new GameObject("FastCamera", typeof(MB));
+                }
+            };
         }
 
         [Exit]
